@@ -14,7 +14,7 @@
     "hyperapp": "^2.0.3",
     "puppeteer": "^1.18.1",
     "replace-in-file": "^4.1.1",
-    "serialize-javascript": "^1.7.0",
+    "serialize-javascript": "^2.1.1",
     "serve-handler": "^6.1.2",
     "url-pattern": "^1.0.3"
   },
