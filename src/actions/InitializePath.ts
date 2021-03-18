@@ -18,14 +18,16 @@ const InitializePath = (state: State, { location, bundle }: InitializePathArgs) 
   }
 
   // If current path doesn't have an "Init" to run
-  if (typeof bundle?.Init !== 'function') {
+  if (typeof bundle?.Init !== 'function' && typeof bundle?.init !== 'function') {
 
     // Set as ready
     return SetPathStatus(state, { path, status: 'ready' })
   }
 
+  const PageInitAction = bundle?.Init ?? bundle?.init
+
   // Compute next state or action tuple using the provided "Init" action
-  const action = bundle?.Init(
+  const action = PageInitAction(
     state,
     location
   )
