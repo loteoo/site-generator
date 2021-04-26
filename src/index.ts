@@ -5,6 +5,7 @@ export { default as navigate } from './effects/navigate'
 export { default as loadStatic } from './effects/loadStatic'
 export { default as onRouteChanged } from './subscriptions/onRouteChanged'
 export { default as htmlToVdom } from './utils/htmlToVdom'
+export { default as isPrerendering } from './utils/isPrerendering'
 export {
   Options,
   Config,
