@@ -13,7 +13,6 @@ export interface Config {
   options?: Options;
   init: Record<string, any>;
   view: (state: State) => any;
-  node: Element;
   subscriptions?: (state: State) => any[];
 }
 

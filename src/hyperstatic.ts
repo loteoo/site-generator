@@ -91,10 +91,11 @@ const hyperstatic = ({ routes, options: userOptions, init, view, subscriptions =
   }
 
   return app({
+    ...rest,
     init: initAction,
     view: (state) => provide(
       { state, meta, options, getLocation, PreloadPage },
-      h('div', { id: 'app' }, view(state))
+      h('div', { id: 'hyperstatic' }, view(state))
     ),
     subscriptions: (state) => [
       ...subscriptions(state),
@@ -104,7 +105,7 @@ const hyperstatic = ({ routes, options: userOptions, init, view, subscriptions =
         action: PreloadPage
       })
     ],
-    ...rest
+    node: document.getElementById('hyperstatic'),
   })
 }
 
