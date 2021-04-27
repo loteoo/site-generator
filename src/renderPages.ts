@@ -60,6 +60,8 @@ const renderPages = async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
+    await page.setUserAgent('puppeteer');
+
     await page.exposeFunction('registerPath', (path: string) => {
       if (!renderQueue.includes(path)) {
         console.log(`Found path ${path}, adding to render queue`);
