@@ -1,7 +1,12 @@
-import { h } from "hyperapp";
+import { h, text } from "hyperapp";
 import PreventDefault from "../actions/PreventDefault";
 import navigate from "../effects/navigate";
 import { PathInfo, State, ViewContext } from '../types';
+
+const textTypes = ['string', 'number', 'bigint']
+
+const childNode = (child) =>
+  textTypes.includes(typeof child) ? text(child) : child
 
 interface LinkProps {
   href: string;
@@ -33,9 +38,9 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
         status,
         active,
       };
-      return child(info);
+      return childNode(child(info));
     }
-    return child;
+    return childNode(child);
   };
 
   if (!route) {
@@ -55,7 +60,7 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
         "aria-current": active,
         ...rest,
       },
-      renderChildren(children)
+      [...children].map(renderChildren)
     );
   }
 
@@ -92,7 +97,7 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
       "aria-current": active,
       ...rest,
     },
-    renderChildren(children)
+    [...children].map(renderChildren)
   );
 };
 
