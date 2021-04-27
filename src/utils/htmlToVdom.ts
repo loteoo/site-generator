@@ -39,7 +39,7 @@ const htmlToVdom = (html) => {
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, 'text/html')
   const node = mapVNode(doc.body)
-  return node
+  return node.children
 }
 
 export default htmlToVdom

@@ -1,5 +1,5 @@
 import { h, text } from 'hyperapp'
-import htmlToVdom from '../htmlToVdom';
+import htmlToVdom from '../utils/htmlToVdom';
 import { ViewContext } from '../types';
 
 /**
@@ -39,9 +39,7 @@ const Router = () => ({ state, meta, options }: ViewContext) => {
   const previousOutlet = document.getElementById('router-outlet')
   if (previousOutlet) {
     const node = htmlToVdom(previousOutlet.innerHTML)
-    node.tag = 'div'
-    node.props = { id: 'router-outlet' }
-    return node
+    return h('div', { id: 'router-outlet' }, node);
   }
 
   // Display custom loader if specified
