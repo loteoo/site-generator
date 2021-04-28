@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2019 [Alexandre Lotte](dev@alexlotte.ca)
+Copyright (c) 2021 [Alexandre Lotte](dev@alexlotte.ca)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
