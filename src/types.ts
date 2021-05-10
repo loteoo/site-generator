@@ -1,7 +1,6 @@
 type Action<T> = (state: State, args: T) => State | Array<any>
 
 export interface Options {
-  initialPath?: string;
   baseUrl?: string;
   loader?: (state: State) => any
   notFound?: (state: State) => any

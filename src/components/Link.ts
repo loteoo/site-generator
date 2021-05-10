@@ -105,7 +105,7 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
       [navigateEventName]: RequestNavigation,
       onmouseover: PreloadPageHandler,
       onfocus: PreloadPageHandler,
-      "data-path": path,
+      "data-path": path, // Used by intersection observer
       "data-status": status,
       "aria-current": active,
       ...rest,
