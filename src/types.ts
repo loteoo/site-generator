@@ -9,7 +9,7 @@ export interface Options {
 }
 
 export interface Config {
-  routes: Record<string, Promise<any>>;
+  routes: Record<string, Promise<any> | any>;
   options?: Options;
   init: Record<string, any>;
   view: (state: State) => any;
