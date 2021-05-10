@@ -4,6 +4,7 @@ export interface Options {
   initialPath?: string;
   baseUrl?: string;
   loader?: (state: State) => any
+  notFound?: (state: State) => any
   fastClicks?: boolean
   eagerLoad?: boolean
 }

@@ -1,6 +1,7 @@
 import { h, text } from 'hyperapp'
 import htmlToVdom from '../utils/htmlToVdom';
 import { ViewContext } from '../types';
+import Link from './Link';
 
 /**
  * Router component to import in user code.
@@ -10,6 +11,30 @@ import { ViewContext } from '../types';
  */
 const Router = () => ({ state, meta, options }: ViewContext) => {
   const { route, path } = state.location
+
+  // 404 Page
+  if (!route) {
+    // Display custom 404 page if specified
+    if (options.notFound && typeof options.notFound === 'function') {
+      return (
+        h('div', { id: 'router-outlet' }, [
+          options.notFound(state)
+        ])
+      )
+    }
+
+    // Default 404
+    return (
+      h('div', { id: 'router-outlet' }, [
+        h('div', { style: { padding: '1rem', textAlign: 'center' } }, [
+          h('h1', {}, text('404.')),
+          h('p', {}, text('Page not found.')),
+          Link({ href: '/' }, 'Home page') as any
+        ])
+      ])
+    )
+  }
+
   const view = meta[route]?.bundle?.default;
 
   if (view) {
@@ -55,8 +80,8 @@ const Router = () => ({ state, meta, options }: ViewContext) => {
   // Default loader
   return (
     h('div', { id: 'router-outlet' }, [
-      h('div', { style: { padding: '1rem' } }, [
-        h('h2', { style: { textAlign: 'center' } }, text('Loading...'))
+      h('div', { style: { padding: '1rem', textAlign: 'center' } }, [
+        h('h2', {}, text('Loading...'))
       ])
     ])
   )
