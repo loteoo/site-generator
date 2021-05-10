@@ -87,7 +87,8 @@ const renderPages = async () => {
       console.log(`Rendering page: ${pagePath} ...`)
 
       page.on('pageerror', function (err) {
-        console.log(`Runtime error in page: ${pagePath} Error: ${err.toString()}`)
+        console.log(`Runtime error in page: "${pagePath}" - Error: ${err.toString()}`)
+        console.error(err)
         process.exit(1)
       })
 

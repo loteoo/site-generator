@@ -26,6 +26,6 @@ export const loadRouteBundle = fx(async (dispatch, { meta, location }: LoadRoute
     }
   } catch (err) {
     dispatch(SetPathStatus, { path, status: 'error' })
-    console.error(err)
+    throw err
   }
 })
