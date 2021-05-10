@@ -43,6 +43,19 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
     return childNode(child);
   };
 
+  // External link
+  if (!href.startsWith('/')) {
+    return h(
+      "a",
+      {
+        href,
+        ...rest,
+      },
+      [...children].map(renderChildren)
+    );
+  }
+
+  // 404 link
   if (!route) {
     if (process.env.NODE_ENV === "development") {
       console.warn(`Invalid link pointing to ${href} will 404.`);
