@@ -16,7 +16,10 @@ interface LoadRouteBundleArgs {
 export const loadRouteBundle = fx(async (dispatch, { meta, location }: LoadRouteBundleArgs) => {
   const { route, path } = location
   try {
-    if (!meta[route].bundle) {
+    if (!meta[route]) {
+      // 404
+      dispatch(SetPathStatus, { path, status: 'error' })
+    } else if (!meta[route].bundle) {
       const bundle = await meta[route].promise;
       meta[route].bundle = bundle
       dispatch(InitializePath, { location, bundle })

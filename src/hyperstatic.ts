@@ -54,7 +54,12 @@ const hyperstatic = ({ routes, options: userOptions, init, view, subscriptions =
     const location = getLocation(href)
     const { route, path } = location
 
-    const bundle = meta[route].bundle;
+    // If invalid path (404)
+    if (!route) {
+      return SetPathStatus(state, { path, status: 'error' })
+    }
+
+    const bundle = meta[route]?.bundle;
 
     // If target route's bundle isn't loaded, load it
     if (!bundle) {
