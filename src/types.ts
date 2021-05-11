@@ -6,6 +6,7 @@ export interface Options {
   notFound?: (state: State) => any
   fastClicks?: boolean
   eagerLoad?: boolean
+  navigationDelay?: number
 }
 
 export interface Config {

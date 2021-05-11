@@ -62,7 +62,7 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
     }
     const DumbNavigate = (state: State, ev) => {
       ev.preventDefault();
-      return [state, navigate({ to: href })];
+      return [state, navigate({ to: href, delay: options.navigationDelay })];
     };
     return h(
       "a",
@@ -87,10 +87,10 @@ const Link = ({ href, ...rest }: LinkProps, children) => ({
     ev.preventDefault();
     const action = PreloadPage(state, href);
     if (Array.isArray(action)) {
-      action.push(navigate({ to: href }));
+      action.push(navigate({ to: href, delay: options.navigationDelay }));
       return action;
     }
-    return [action, navigate({ to: href })];
+    return [action, navigate({ to: href, delay: options.navigationDelay })];
   };
 
   const PreloadPageHandler = (state: State, _ev) => {
