@@ -1,3 +1,4 @@
+import { Action } from 'hyperapp';
 
 let observer = new IntersectionObserver(
   (entries, observer) => {
@@ -25,15 +26,19 @@ const subRunner = (dispatch, action) => {
   }
 }
 
+interface OnLinkEnteredViewPortArgs {
+  selector: string;
+  action: Action<any>;
+}
 
 /**
  * Every time a "Link" component enters the viewport,
  * trigger the given action with the link's path as params
  */
-export const onLinkEnteredViewPort = ({
+const onLinkEnteredViewPort = ({
   selector,
   action
-}) => {
+}: OnLinkEnteredViewPortArgs) => {
 
   // After each render
   setTimeout(() => {
@@ -51,3 +56,6 @@ export const onLinkEnteredViewPort = ({
     action
   ]
 }
+
+
+export default onLinkEnteredViewPort

@@ -1,10 +1,14 @@
-import fx from '../utils/fx'
+import { Action } from 'hyperapp'
+
+interface OnRouteChangedArgs {
+  action: Action<any>;
+}
 
 /**
  * Every time the browser's location changes,
  * trigger the given action with the new location as params
  */
-const onRouteChanged = fx((dispatch, action) => {
+const onRouteChangedRunner = (dispatch, { action }: OnRouteChangedArgs) => {
   const handleLocationChange = () => {
     dispatch(action, window.location.pathname + window.location.search)
   }
@@ -14,6 +18,8 @@ const onRouteChanged = fx((dispatch, action) => {
     removeEventListener('pushstate', handleLocationChange)
     removeEventListener('popstate', handleLocationChange)
   }
-})
+}
+
+const onRouteChanged = (args: OnRouteChangedArgs) => [onRouteChangedRunner, args]
 
 export default onRouteChanged

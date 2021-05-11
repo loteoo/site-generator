@@ -1,6 +1,12 @@
+import { Action } from 'hyperapp';
 import SetPathStatus from '../actions/SetPathStatus';
 import { State } from '../types';
-import fx from '../utils/fx'
+
+interface LoadStaticArgs {
+  loader: () => any | Promise<any>;
+  action: Action<any>;
+  error: Action<any>;
+}
 
 /**
  * Effect runner for the loadStatic effect
@@ -10,7 +16,7 @@ import fx from '../utils/fx'
  *
  * At runtime, it will fetch the pre-saved JSON instead of running the promise
  */
-const loadStaticRunner = async (dispatch, { path, loader, action, error }) => {
+const loadStaticRunner = async (dispatch, { path, loader, action, error }: LoadStaticArgs & { path: string }) => {
   try {
 
     // @ts-ignore
@@ -37,6 +43,6 @@ const loadStaticRunner = async (dispatch, { path, loader, action, error }) => {
 
 loadStaticRunner.fxName = 'loadStatic';
 
-const loadStatic = fx(loadStaticRunner)
+const loadStatic = (args: LoadStaticArgs) => [loadStaticRunner, args]
 
 export default loadStatic

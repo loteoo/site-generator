@@ -2,8 +2,8 @@ import { app, h } from 'hyperapp'
 import { match } from "path-to-regexp";
 import InitializePath from './actions/InitializePath';
 import SetPathStatus from './actions/SetPathStatus';
-import { loadRouteBundle } from './effects/loadRouteBundle';
-import { onLinkEnteredViewPort } from './subscriptions/onLinkEnteredViewPort';
+import loadRouteBundle from './effects/loadRouteBundle';
+import onLinkEnteredViewPort from './subscriptions/onLinkEnteredViewPort';
 import onRouteChanged from './subscriptions/onRouteChanged';
 import parseQueryString from './utils/parseQueryString';
 import provide from './utils/provide'
@@ -104,7 +104,9 @@ const hyperstatic = ({ routes, options: userOptions, init, view, subscriptions =
     ),
     subscriptions: (state) => [
       ...subscriptions(state),
-      onRouteChanged(LocationChanged),
+      onRouteChanged({
+        action: LocationChanged
+      }),
       options.eagerLoad && onLinkEnteredViewPort({
         selector: 'a[data-status=iddle]',
         action: PreloadPage
