@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.1.1",
   "name": "hyperstatic",
   "description": "Hyperapp static site framework",
   "author": "Alexandre Lotte",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "fs-extra": "^9.1.0",
-    "hyperapp": "^2.0.15",
+    "hyperapp": "^2.0.18",
     "path-to-regexp": "^6.2.0",
     "puppeteer": "^7.1.0",
     "replace-in-file": "^6.2.0",
